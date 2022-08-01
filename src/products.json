@@ -1,0 +1,20 @@
+{
+    "products" : [
+        {
+            "productId" : "P001",
+            "productName" : "Teh Macha"
+        },
+        {
+            "productId" : "P002",
+            "productName" : "Coca Cola"
+        },
+        {
+            "productId" : "P003",
+            "productName" : "Sprite"
+        },
+        {
+            "productId" : "P004",
+            "productName" : "Fanta"
+        }
+    ]
+}
