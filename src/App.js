@@ -1,22 +1,39 @@
 import './App.css';
-import ClickCounter from './components/ClickCounter';
-import HelloComponent from './components/HelloComponent';
-import HoverCounter from './components/HoverCounter';
-import ProductList from './features/product/ProductList';
-import WithSearch from './shared/WithSearch';
-import data from "./products.json"
+import {Component} from 'react';
+import ActionType from './redux/reducer/GlobalActionType';
+import {connect} from 'react-redux';
+import Number from './components/Number';
 
-function App() {
-  const ProductListWithSearch = WithSearch(ProductList, data)
-  return (
-    <div>
-      {/* <ClickCounter/>
-      <HoverCounter/>
-      <HelloComponent/> */}
-      {/* <ProductList data={data.products}/> */}
-      <ProductListWithSearch/>
-    </div>
-  );
+class App extends Component {
+  render(){
+      console.log(this.props)
+    return (
+      <div>
+        <h1>{this.props.numb}</h1>
+        <button onClick={this.props.handlePlus}>+</button>
+        <button onClick={this.props.handleMinus}>-</button>
+        <button onClick={this.props.handleMultiple}>*</button>
+        <Number/>
+      </div>
+    );
+  }
 }
 
-export default App;
+//cara mengirim status menggunakan mapStateToProps
+const mapStateToProps = (state) => {
+  return {
+      numb : state.globalNumber
+  }
+}
+
+//cara mengirim action menggunakan mapDispatchToProps
+const mapDispatchToProps = (dispatch) => {
+  return {
+      handlePlus : () => dispatch({type : ActionType.PLUS}),
+      handleMinus : () => dispatch({type : ActionType.MINUS}),
+      handleMultiple : () => dispatch({type : ActionType.MULTIPLE})
+  }
+}
+
+//connect untuk ikat react dan redux
+export default connect(mapStateToProps, mapDispatchToProps) (App);
